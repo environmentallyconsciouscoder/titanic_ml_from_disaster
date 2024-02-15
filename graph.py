@@ -11,7 +11,3 @@ class Graph:
 
     def bar_graph(self, data):
         self.df.displot(data=data)
-
-    def create_correlation_matrix(self, data):
-        plt.figure(figsize=(20,20))
-        self.df.heatmap(data, annot=True)
