@@ -59,8 +59,12 @@ class DataFrame:
         ## fit and transform the data
         self.df[ column + '_bucket'] = dis.fit_transform(self.df[[column]])
 
-        # self.df['Age_bucket'] = dis.fit_transform(self.df[['Age']])
-        # self.df['Fare_bucket'] = dis.fit_transform(self.df[['Fare']])
+    def get_bin_edges(self, column: str, strategy: str):
+        # Number of buckets
+        number_buckets = 5
+        # Initialize the instance of KBinsDiscretizer
+        dis = KBinsDiscretizer(n_bins=number_buckets, encode='ordinal', strategy=strategy)
+        dis.fit_transform(self.df[[column]])
         # Get the bin edges
-        # bin_edges = dis.bin_edges_
-        # bin_edges
+        bin_edges = dis.bin_edges_
+        return bin_edges
