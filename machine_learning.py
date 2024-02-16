@@ -2,7 +2,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.tree import DecisionTreeClassifier
-
+from sklearn import svm
 class MachineLearning:
     def __init__(self, data_to_use, data_to_target, test_size=0.30, random_state=32):
 
@@ -21,6 +21,10 @@ class MachineLearning:
         self.decision_tree_gini_model = None
         self.decision_tree_depth_model = None
         self.decision_tree_entropy_model = None
+
+        self.svm_clf_linear_model = None
+        self.svm_clf_sigmoid_model = None
+        self.svm_clf_rbf_model = None
 
         self.mae_train = None
         self.rmse_train = None
@@ -62,3 +66,15 @@ class MachineLearning:
     def decision_tree_entropy_classifier(self):
         decision_entropy = DecisionTreeClassifier(criterion='entropy')
         self.decision_tree_entropy_model = decision_entropy.fit(self.X_train, self.y_train)
+
+    def svm_clf_linear_classifier(self):
+        clf_linear = svm.SVC(kernel="linear")
+        self.svm_clf_linear_model = clf_linear.fit(self.X_train, self.y_train)
+
+    def svm_clf_sigmoid_classifier(self):
+        clf_sigmoid = svm.SVC(kernel="sigmoid")
+        self.svm_clf_sigmoid_model = clf_sigmoid.fit(self.X_train, self.y_train)
+
+    def svm_clf_rbf_classifier(self):
+        clf_rbf = svm.SVC(kernel="rbf")
+        self.svm_clf_rbf_model = clf_rbf.fit(self.X_train, self.y_train)
